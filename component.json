@@ -1,0 +1,57 @@
+{
+    "title": "AmazonApiGatewayManagementApi",
+    "description": "The Amazon API Gateway Management API allows you to directly manage runtime aspects of your deployed APIs. To use it, you must explicitly set the SDK's endpoint to point to the endpoint of your deployed API. The endpoint will be of the form https://{api-id}.execute-api.{region}.amazonaws.com/{stage}, or will be the endpoint corresponding to your API's custom domain and base path, if applicable.",
+    "docsUrl": "https://aws.amazon.com/execute-api/",
+    "url": "https://api.apis.guru/v2/specs/amazonaws.com/apigatewaymanagementapi/2018-11-29/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://execute-api.amazonaws.com/",
+                    "http://execute-api.amazonaws.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "hmac": {
+                "label": "Authorization (hmac)",
+                "viewClass": "TextFieldView",
+                "note": "Amazon Signature authorization v4"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "PostToConnection": {
+            "main": "./lib/actions/PostToConnection.js",
+            "title": "Sends the provided data to the specified connection.",
+            "description": "Sends the provided data to the specified connection.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PostToConnection.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
